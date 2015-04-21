@@ -9,9 +9,6 @@ BITS 32
 ;   have a working program, create a second program using C to 
 ;   read your payload from disk and execute it. 
 ;   nasm -f bin assn1.asm
-;   Stack setup
-;   		filename (8 bytes 'flag',0x0)
-;   ebp->   charbuf (4 byte)
 section .text
 global main    ;allows gcc to find function
 
@@ -19,24 +16,35 @@ _main:
 push ebp      ;save caller frame ptr
 mov ebp, esp  ;setup our frame ptr
 sub esp, 16   ;allocate local storage
-
-call open
-.looptop:
-call read
-call write
-check for eof
-if not eof jump .looptop
-call close
-
+;   Stack setup
+;           filedescripter (4 bytes)
+;   		filename (8 bytes 'flag',0x0)
+;   ebp->   charbuf (4 byte)
+;OPEN flag eax=5(open) ebx=filenameptr ecx=flags   edx=mode
+;open file called flag   
+; flag0 in little indian hex= 0x67 'g' 0x61 'a', 0x6c 'l', 0x66 'f', 
+;     0x0 'null'
+mov [ebp+4], 0x67616c66
+mov [ebp+8], 0x0
+mov ecx, 0   ;mode=RDonly=0  WRonly=1  RDRW=2  
+mov ebx, [ebp+4]  ;name of file to open
+mov eax, 5    ;open syscall
+int 0x80
+mov [ebp+12], eax  ;capture filedescripter number of file
+; Start loop that will alternate between reading characters 
+;           and writing to standard out
+;.looptop:
+;READ flag   eax=3(read)   ebx=filedescripter  ecx=(bufptr)   edx=(size)
+; read a single character from flag
+;WRITE flag    eax=4(write)  ebx=1(stdout fd)  ecx=(bufptr)  edx=(size)
+; write a single character to stdout
+; check for eof
+; if not eof jump .looptop
+;CLOSE flag   eax=6(close)   ebx=(fd)
+; close file
+mov ebx, [ebp+12]   ;move fd for opened file into ebx
+mov eax, 6   		;sys_close systemcall number
+int 0x80
 mov esp, ebp  ;deallocate locals
 pop ebp   	  ;restore callers frame ptr
 ret 0
-;open file called flag   eax=5(open) ebx=filenameptr ecx=flags   edx=mode
-.read:
-mov ecx, 0   ;mode=RDonly=0  WRonly=1  RDRW=2  
-mov ebx, 'flag'  ;name of file to open
-mov eax, 5    ;open syscall
-int 0x80
-;read flag               eax=3(read)   ebx=filedescripter  ecx=(bufptr)   edx=(size)
-;display flag    eax=4(write)  ebx=1(stdout fd)  ecx=(bufptr)  edx=(size)
-;close flag   eax=6(close)   ebx=(fd)

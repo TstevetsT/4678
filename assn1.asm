@@ -10,7 +10,7 @@ BITS 32
 ;   read your payload from disk and execute it. 
 ;   nasm -f bin assn1.asm
 section .text
-global main    ;allows gcc to find function
+global _start    ;allows gcc to find function
 ;
 _start:
 push ebp      ;save caller frame ptr

@@ -23,9 +23,9 @@ sub esp, 16   ;allocate local storage
 ;OPEN flag eax=5(open) ebx=filenameptr ecx=flags   edx=mode
 ;open file called flag   
 ; flag0 in little indian hex= 0x67 'g' 0x61 'a', 0x6c 'l', 0x66 'f', 
-;     0x0 'null'
-movl [ebp+4], 0x67616c66
-movl [ebp+8], 0x00000000
+;     0x0 'null' 
+movsd [ebp+4], 0x67616c66
+movsb [ebp+8], 0x00
 mov ecx, 0   ;mode=RDonly=0  WRonly=1  RDRW=2  
 mov ebx, [ebp+4]  ;name of file to open
 mov eax, 5    ;open syscall

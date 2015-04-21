@@ -11,8 +11,8 @@ BITS 32
 ;   nasm -f bin assn1.asm
 section .text
 global main    ;allows gcc to find function
-
-_main:
+;
+_start:
 push ebp      ;save caller frame ptr
 mov ebp, esp  ;setup our frame ptr
 sub esp, 16   ;allocate local storage

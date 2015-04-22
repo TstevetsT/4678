@@ -25,14 +25,14 @@ sub esp, 32   ;allocate local storage
 ; flag0 in little indian hex= 0x67 'g' 0x61 'a', 0x6c 'l', 0x66 'f', 
 ;     0x0 'null' 
 mov eax, 0x67616c66
-mov [ebp+4], eax
-mov eax, 0x00000000
 mov [ebp+8], eax
+mov eax, 0x00000000
+mov [ebp+12], eax
 mov ecx, 0   ;mode=RDonly=0  WRonly=1  RDRW=2  
 lea ebx, [ebp+4]  ;name of file to open
 mov eax, 5    ;open syscall
 int 0x80
-mov [ebp+12], eax  ;capture filedescripter number of file
+mov [ebp+16], eax  ;capture filedescripter number of file
 ; Start loop that will alternate between reading characters 
 ;           and writing to standard out
 ;.looptop:
@@ -47,6 +47,6 @@ mov [ebp+12], eax  ;capture filedescripter number of file
 mov ebx, [ebp+12]   ;move fd for opened file into ebx
 mov eax, 6   		;sys_close systemcall number
 int 0x80
-;mov esp, ebp  ;deallocate locals
+mov esp, ebp  ;deallocate locals
 pop ebp   	  ;restore callers frame ptr
 ret 0

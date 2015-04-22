@@ -13,9 +13,9 @@ section .text
 global _start    ;allows gcc to find function
 ;
 _start:
-push ebp      ;save caller frame ptr
-mov ebp, esp  ;setup our frame ptr
-sub esp, 32   ;allocate local storage
+;push ebp      ;save caller frame ptr
+;mov ebp, esp  ;setup our frame ptr
+;sub esp, 32   ;allocate local storage
 ;   Stack setup
 ;           filedescripter (4 bytes)
 ;   		filename (8 bytes 'flag',0x0)
@@ -47,6 +47,6 @@ mov [ebp+12], eax  ;capture filedescripter number of file
 mov ebx, [ebp+12]   ;move fd for opened file into ebx
 mov eax, 6   		;sys_close systemcall number
 int 0x80
-mov esp, ebp  ;deallocate locals
-pop ebp   	  ;restore callers frame ptr
+;mov esp, ebp  ;deallocate locals
+;pop ebp   	  ;restore callers frame ptr
 ret 0

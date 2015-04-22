@@ -49,4 +49,6 @@ mov eax, 6   		;sys_close systemcall number
 int 0x80
 mov esp, ebp  ;deallocate locals
 pop ebp   	  ;restore callers frame ptr
+pop ebp
+pop ebp
 ret 0

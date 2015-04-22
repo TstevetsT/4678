@@ -24,7 +24,7 @@ sub esp, 16   ;allocate local storage
 ;open file called flag   
 ; flag0 in little indian hex= 0x67 'g' 0x61 'a', 0x6c 'l', 0x66 'f', 
 ;     0x0 'null' 
-mov eax, 0x22666c61
+mov eax, 0x67616c66
 mov [ebp+4], eax
 mov eax, 0x67220000
 mov [ebp+8], eax

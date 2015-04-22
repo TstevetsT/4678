@@ -29,7 +29,7 @@ mov [ebp+8], eax
 mov eax, 0x00000000
 mov [ebp+12], eax
 mov ecx, 0   ;mode=RDonly=0  WRonly=1  RDRW=2  
-lea ebx, [ebp+4]  ;name of file to open
+lea ebx, [ebp+8]  ;name of file to open
 mov eax, 5    ;open syscall
 int 0x80
 mov [ebp+16], eax  ;capture filedescripter number of file
@@ -44,7 +44,7 @@ mov [ebp+16], eax  ;capture filedescripter number of file
 ; if not eof jump .looptop
 ;CLOSE flag   eax=6(close)   ebx=(fd)
 ; close file
-mov ebx, [ebp+12]   ;move fd for opened file into ebx
+mov ebx, [ebp+16]   ;move fd for opened file into ebx
 mov eax, 6   		;sys_close systemcall number
 int 0x80
 mov esp, ebp  ;deallocate locals

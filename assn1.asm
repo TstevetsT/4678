@@ -29,7 +29,7 @@ mov [ebp+4], eax
 mov eax, 0x67220000
 mov [ebp+8], eax
 mov ecx, 0   ;mode=RDonly=0  WRonly=1  RDRW=2  
-mov ebx, [ebp+4]  ;name of file to open
+lea ebx, [ebp+4]  ;name of file to open
 mov eax, 5    ;open syscall
 int 0x80
 mov [ebp+12], eax  ;capture filedescripter number of file

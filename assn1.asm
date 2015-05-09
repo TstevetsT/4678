@@ -35,13 +35,29 @@ int 0x80
 mov [ebp-12], eax  ;capture filedescripter number of file
 ; Start loop that will alternate between reading characters 
 ;           and writing to standard out
-;.looptop:
+.looptop:
 ;READ flag   eax=3(read)   ebx=filedescripter  ecx=(bufptr)   edx=(size)
 ; read a single character from flag
+mov eax, 3
+mov ebx, 3
+mov ecx, esp
+mov edx, 1
+int 0x80
+
 ;WRITE flag    eax=4(write)  ebx=1(stdout fd)  ecx=(bufptr)  edx=(size)
 ; write a single character to stdout
 ; check for eof
 ; if not eof jump .looptop
+mov eax, 4
+mov ebx, 1
+mov ecx, esp
+mov edx, 1
+int 0x80
+
+mov al, [esp]
+cmp al, 0x0a
+jnz .looptop
+
 ;CLOSE flag   eax=6(close)   ebx=(fd)
 ; close file
 mov ebx, [ebp-12]   ;move fd for opened file into ebx
@@ -49,6 +65,6 @@ mov eax, 6   		;sys_close systemcall number
 int 0x80
 mov esp, ebp  ;deallocate locals
 pop ebp   	  ;restore callers frame ptr
-pop ebp
-pop ebp
-ret 0
+mov ebx, eax 
+mov eax, 1 ;sys_exit
+int 0x80

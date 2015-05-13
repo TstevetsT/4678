@@ -48,6 +48,7 @@
 Basic code framework provided by:  	
 http://stackoverflow.com/questions/14002954  
 Worked with Forest Bush.
+execstack -s assn1_harness    //required for program to execute without error
 */
 #include <stdio.h>
 #include <stdlib.h>

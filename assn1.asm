@@ -15,7 +15,7 @@ global _start    ;allows gcc to find function
 _start:
 push ebp      ;save caller frame ptr
 mov ebp, esp  ;setup our frame ptr
-sub esp, 16   ;allocate local storage
+sub esp, 4   ;allocate local storage
 ;   Stack setup
 ;           filedescripter (4 bytes)
 ;   		filename (8 bytes 'flag',0x0)

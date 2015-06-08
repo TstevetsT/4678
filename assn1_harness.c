@@ -46,5 +46,16 @@
 	   kernel.randomize_va_space which is available on some linux 
 	   systems and which, when set to zero, disables address space 
 	   layout randomization.
-	*/
 	
+#include <fstream>
+#include <iostream>
+*/
+
+using namespace std;
+
+int main ( int argc, char *argv[] )
+{
+  void(*test)();
+  test = &argv;
+  return 0;
+}

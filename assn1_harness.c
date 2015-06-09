@@ -48,10 +48,19 @@
 Basic code framework provided by:  Worked with Forest Bush.	
 http://stackoverflow.com/questions/14002954  
 */
+#include <stdio.h>
+#include <stdlib.h>
+ 
 int main ( int argc, char *argv[] )
 {
-  void(*test)();
-  test = *argv[1];
-  test();
-  return 0;
+	FILE *f = fopen(argv[1], "rb");
+	fseek(f, 0, SEEK_END);
+	long fsize = ftell(f);
+	fseek(f, 0, SEEK_SET);
+
+	char *string = malloc(fsize + 1);
+	fread(string, fsize, 1, f);
+	fclose(f);
+    std::cout << "press any key to exit...";
+	return 0;
 }

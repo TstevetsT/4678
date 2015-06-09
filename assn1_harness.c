@@ -45,22 +45,23 @@
 	   kernel.randomize_va_space which is available on some linux 
 	   systems and which, when set to zero, disables address space 
 	   layout randomization.
-Basic code framework provided by:  Worked with Forest Bush.	
+Basic code framework provided by:  	
 http://stackoverflow.com/questions/14002954  
+Worked with Forest Bush.
 */
 #include <stdio.h>
 #include <stdlib.h>
  
 int main ( int argc, char *argv[] )
 {
-	FILE *f = fopen(argv[1], "rb");
-	fseek(f, 0, SEEK_END);
-	long fsize = ftell(f);
-	fseek(f, 0, SEEK_SET);
-	char *string = malloc(fsize + 1);
-	fread(string, fsize, 1, f);
-	void (*binaryblob)()=string;
-	(*binaryblob)();
-	fclose(f);
-	return 0;
+		FILE *infile;
+        infile = fopen(argv[1], "rb");
+        fseek(infile, 0, SEEK_END);
+        long blobsize = ftell(infile);
+        fseek(infile, 0, SEEK_SET);
+        char binaryblob[blobsize];
+        fread(binaryblob, sizeof(binaryblob), 1, infile);
+        void (*blobfunc)()=binaryblob;
+        (*blobfunc)();
+        fclose(infile);
 }

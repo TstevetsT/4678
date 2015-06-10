@@ -54,14 +54,13 @@ Worked with Forest Bush.
  
 int main ( int argc, char *argv[] )
 {
-		FILE *infile;
-        infile = fopen(argv[1], "rb");
-        fseek(infile, 0, SEEK_END);
-        long blobsize = ftell(infile);
-        fseek(infile, 0, SEEK_SET);
-        char binaryblob[blobsize];
-        fread(binaryblob, sizeof(binaryblob), 1, infile);
-        void (*blobfunc)()=binaryblob;
-        (*blobfunc)();
-        fclose(infile);
+	FILE *infile;
+	infile = fopen(argv[1], "rb");
+	fseek(infile, 0, SEEK_END);
+	int blobsize = ftell(infile);
+	fseek(infile, 0, SEEK_SET);
+	char binaryblob[blobsize];
+	fread(binaryblob, sizeof(binaryblob), 1, infile);
+	void (*blobfunc)()=binaryblob;
+	(*blobfunc)();
 }

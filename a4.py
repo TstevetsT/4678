@@ -89,10 +89,12 @@ line = readLine(s)
 sys.stdout.write(line)
 
 
-s.send(1'\r\n')
+s.send(1)
 line = readLine(s)
-s.send(AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\n)
+sys.stdout.write(line)
+s.send(AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA)
 line = readLine(s)
+
 
 sys.stdout.write(line)
 

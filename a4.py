@@ -89,7 +89,7 @@ line = readLine(s)
 sys.stdout.write(line)
 
 
-s.send(1/n AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/n )
+s.send(1\n AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\n )
 line = readLine(s)
 
 sys.stdout.write(line)

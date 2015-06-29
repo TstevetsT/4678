@@ -50,8 +50,8 @@ class Listener(threading.Thread):
             print "socket timed out. quitting..."
             sys.exit()
         print "incoming connection from: " + str(tgt)
-            t.sock = conn
-            t.interact()
+        t.sock = conn
+        t.interact()
 
 host = "127.0.0.1"
 lhost = host.split(".")

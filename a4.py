@@ -23,6 +23,10 @@ def readLine(s):
     return receved
 
 def interact(s):
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.bind(('', 4445))
+    s.listen(1)
+    s.settimeout(10)
     t = telnetlib.Telnet()
     try:
         conn, tgt = s.accept()

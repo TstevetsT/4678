@@ -125,6 +125,6 @@ for i in range(4):
 
 s.send('quit\n')
 
-#l = Listener().start()
+l = Listener().start()
 
 interact(s)

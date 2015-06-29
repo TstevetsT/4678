@@ -68,6 +68,7 @@ while True:
 print "argv = %x" % argv
 
 idx = 0
+sys.stdout.write(sc)
 for b in sc:
     writeByte(s, argv + idx, ord(b), buf_start)
     readLine(s)

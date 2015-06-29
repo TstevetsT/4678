@@ -90,10 +90,10 @@ sys.stdout.write(line)
 line = readLine(s)
 sys.stdout.write(line)
 
-s.send(1)
+s.send('1')
 line = readLine(s)
 sys.stdout.write(line)
-s.send(AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA)
+s.send('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
 line = readLine(s)
 
 

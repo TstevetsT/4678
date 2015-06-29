@@ -93,15 +93,17 @@ sys.stdout.write(line)
 s.send('1')
 line = readLine(s)
 sys.stdout.write(line)
-s.send('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
+s.send('A'*256)
 line = readLine(s)
-
-
+sys.stdout.write(line)
+s.send('4')
+line = readLine(s)
 sys.stdout.write(line)
 
-vals = line.split()
-buf_start = vals.index('41414141')
-print "buffer starts at %d" % buf_start
+
+#vals = line.split()
+#buf_start = vals.index('41414141')
+#print "buffer starts at %d" % buf_start
 
 index = buf_start + 64
 while True:

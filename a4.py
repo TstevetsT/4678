@@ -69,8 +69,8 @@ print "argv = %x" % argv
 
 idx = 0
 for b in sc:
+    print "Writing: s=%s, argv=%s, idx=%d, ord(b)=%d, buf_start=%d" % (s, argv, idx, ord(b), buf_start)
     writeByte(s, argv + idx, ord(b), buf_start)
-    print "buffer starts at %d" % 78
     readLine(s)
     idx += 1
 

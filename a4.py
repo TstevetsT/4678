@@ -74,8 +74,9 @@ while True:
 print "argv = %x" % argv
 
 idx = 0
+print "Writing: s=%s, argv=%x, idx=%d, buf_start=%d" % (s, argv, idx, buf_start)
 for b in sc:
-    print "Writing: s=%s, argv=%x, idx=%d, ord(b)=%d, buf_start=%d" % (s, argv, idx, ord(b), buf_start)
+    print "Writing: ord(b)=%d" % ord(b)
     writeByte(s, argv + idx, ord(b), buf_start)
     #readLine(s)
     idx += 1

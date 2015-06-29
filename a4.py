@@ -71,7 +71,7 @@ idx = 0
 for b in sc:
     print "Writing: s=%s, argv=%x, idx=%d, ord(b)=%d, buf_start=%d" % (s, argv, idx, ord(b), buf_start)
     writeByte(s, argv + idx, ord(b), buf_start)
-    readLine(s)
+    #readLine(s)
     idx += 1
 
 exit = 0x0804a018

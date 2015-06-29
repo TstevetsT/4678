@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # This code is adopted from exploit python written by Chris Eagle
 
+import os
 import socket
 import struct
 import sys

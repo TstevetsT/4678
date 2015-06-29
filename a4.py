@@ -8,7 +8,7 @@ import telnetlib
 
 def readLine(s):
     res = None
-        while True:
+    while True:
             ch = s.recv(1)
                 if ch:
                     if res is None:

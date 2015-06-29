@@ -87,7 +87,8 @@ s.connect(('127.0.0.1', 4444))
 
 line = readLine(s)
 sys.stdout.write(line)
-
+line = readLine(s)
+sys.stdout.write(line)
 
 s.send(1)
 line = readLine(s)

@@ -6,6 +6,7 @@ import socket
 import struct
 import sys
 import telnetlib
+import threading
 
 def readLine(s):
     receved = None

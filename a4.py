@@ -8,19 +8,19 @@ import sys
 import telnetlib
 
 def readLine(s):
-    res = None
+    receved = None
     while True:
             ch = s.recv(1)
             if ch:
-                if res is None:
-                    res = ch
+                if receved is None:
+                    receved = ch
                 else:
-                    res += ch
-            if ch == '\n':
-                break
+                    receved += ch
+                if ch == '\n':
+                        break
             else:
                 break
-    return res
+    return receved
 
 def interact(s):
     t = telnetlib.Telnet()

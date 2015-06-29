@@ -23,18 +23,8 @@ def readLine(s):
     return receved
 
 def interact(s):
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.bind(('', 4445))
-    s.listen(1)
-    s.settimeout(10)
     t = telnetlib.Telnet()
-    try:
-        conn, tgt = s.accept()
-    except socket.timeout:
-        print "socket timed out. quitting..."
-        sys.exit()
-    print "incoming connection from: " + str(tgt)
-    t.sock = conn
+    t.sock = s
     t.interact()
 
 def writeByte(s, addr, val, idx):

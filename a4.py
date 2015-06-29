@@ -40,7 +40,7 @@ s.connect((sys.argv[1], int(sys.argv[2])))
 s.send("AAAA %x %x %x %x %x %x %x %x %x %x %x %x\n")
 line = readLine(s)
 
-print "%x" %line
+print "%s" %line
 
 vals = line.split()
 buf_start = vals.index('41414141')

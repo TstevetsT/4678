@@ -10,13 +10,13 @@ def readLine(s):
     res = None
     while True:
             ch = s.recv(1)
-                if ch:
-                    if res is None:
-                        res = ch
-                        else:
-                            res += ch
-                        if ch == '\n':
-                            break
+            if ch:
+                if res is None:
+                    res = ch
+                else:
+                    res += ch
+            if ch == '\n':
+                break
             else:
                 break
     return res

